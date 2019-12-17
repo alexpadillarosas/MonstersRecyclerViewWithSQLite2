@@ -21,14 +21,17 @@ import android.view.MenuItem;
 import java.util.List;
 
 /**
- * First    modify the MonsterDatabaseHelper to return a monster given it's database id
- * Second   Create An Scrolling Activity call it  AddMonsterScrollingActivity
+ * First and Foremost, in the assets/monsters folder you will find monster.db and monster.db-journal
+ *          files to install then in your device, after it, delete them.
+ *
+ * Second   modify the MonsterDatabaseHelper to return a monster given it's database id
+ * Third    Create An Scrolling Activity call it  AddMonsterScrollingActivity
  *          Edit the content_add_monster_scrolling.xml generated file. find it in the Layout folder
  *          Add a controls to input the monster's name, description, scariness level and a couple
  *          of buttons to cancel or add the monster.
  *          Next, create variables to manipulate them in the AddMonsterScrollingActivity
- * Third    Add a Splash Screen to the application.
- * Fourth   Test the internationalization in our application
+ * Fourth   Add a Splash Screen to the application.
+ * Fifth    Test the internationalization in our application
  */
 
 public class MainActivity extends AppCompatActivity {
