@@ -1,8 +1,11 @@
 package com.blueradix.android.monstersrecyclerviewwithsqlite.Entities;
 
-import java.io.Serializable;
 
-public class Monster implements Serializable {
+//TODO: In order to pass an object from this class between activities make it extends from Serializable
+
+public class Monster  {
+
+    //TODO: Create a constant that we will use to pass a monster from between activities
 
 
     public Long id;
@@ -10,6 +13,9 @@ public class Monster implements Serializable {
     public String description;
     public Integer scariness;
     public String imageFileName;
+
+    //TODO: create an empty constructor without parameters
+
 
     public Monster(Long id, String name, String description, Integer scariness, String imageFileName) {
         this.id = id;

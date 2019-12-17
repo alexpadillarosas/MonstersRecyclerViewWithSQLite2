@@ -20,6 +20,17 @@ import android.view.MenuItem;
 
 import java.util.List;
 
+/**
+ * First    modify the MonsterDatabaseHelper to return a monster given it's database id
+ * Second   Create An Scrolling Activity call it  AddMonsterScrollingActivity
+ *          Edit the content_add_monster_scrolling.xml generated file. find it in the Layout folder
+ *          Add a controls to input the monster's name, description, scariness level and a couple
+ *          of buttons to cancel or add the monster.
+ *          Next, create variables to manipulate them in the AddMonsterScrollingActivity
+ * Third    Add a Splash Screen to the application.
+ * Fourth   Test the internationalization in our application
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     List<Monster> monsters;
@@ -28,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /* As the SplashTheme was set as a background image, it will stay as background for all
+            our activities, and we don't want that. Set
+            TODO:  set back the old Theme:   AppTheme  when the activity gets created
+        */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -50,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
 
         monstersRecyclerView.setLayoutManager(gridLayoutManager);
 

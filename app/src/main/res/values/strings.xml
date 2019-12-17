@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Buy a Monster</string>
     <string name="action_settings">Settings</string>
+
+
+    <!--  Get rid of all hardcoded labels and text in the application, create
+          an entry for each hardcoded text -->
+
+    <!--  When done, proceed with the internationalization, right click on the file,
+          Open Translation Editor, click the globe icon, select the language you want to translate
+          the file to, and fill up the translations -->
+
+    <!--  Finally change the language of your device to test the internationalization:
+          Settings ->  Language & Input -> Language, and set the new language for your device.
+          Now run your App and check the new language of your app  -->
 </resources>
