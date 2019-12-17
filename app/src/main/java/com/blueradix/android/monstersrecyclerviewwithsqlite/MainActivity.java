@@ -2,7 +2,7 @@ package com.blueradix.android.monstersrecyclerviewwithsqlite;
 
 import android.os.Bundle;
 
-import com.blueradix.android.monstersrecyclerviewwithsqlite.Entities.Monster;
+import com.blueradix.android.monstersrecyclerviewwithsqlite.entities.Monster;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.database.MonsterDatabaseHelper;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.recyclerview.MonsterRecyclerViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

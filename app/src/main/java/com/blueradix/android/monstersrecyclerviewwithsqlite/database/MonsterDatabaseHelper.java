@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.blueradix.android.monstersrecyclerviewwithsqlite.Entities.Monster;
+import com.blueradix.android.monstersrecyclerviewwithsqlite.entities.Monster;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.blueradix.android.monstersrecyclerviewwithsqlite.Entities;
+package com.blueradix.android.monstersrecyclerviewwithsqlite.entities;
 
 
 //TODO: In order to pass an object from this class between activities make it extends from Serializable
