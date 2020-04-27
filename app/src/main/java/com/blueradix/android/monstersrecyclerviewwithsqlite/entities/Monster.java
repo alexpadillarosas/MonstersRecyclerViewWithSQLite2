@@ -1,28 +1,29 @@
 package com.blueradix.android.monstersrecyclerviewwithsqlite.entities;
 
+import java.io.Serializable;
 
-//TODO: In order to pass an object from this class between activities make it extends from Serializable
-
-public class Monster  {
-
-    //TODO: Create a constant that we will use to pass a monster from between activities
-
+public class Monster implements Serializable {
 
     public Long id;
     public String name;
     public String description;
     public Integer scariness;
     public String imageFileName;
+    private Integer votes;
+    private Integer stars;
 
-    //TODO: create an empty constructor without parameters
+    public Monster() {
 
+    }
 
-    public Monster(Long id, String name, String description, Integer scariness, String imageFileName) {
+    public Monster(Long id, String name, String description, Integer scariness, String imageFileName, Integer votes, Integer stars) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.scariness = scariness;
         this.imageFileName = imageFileName;
+        this.votes = votes;
+        this.stars = stars;
     }
 
     public Long getId() {
@@ -61,6 +62,22 @@ public class Monster  {
         return imageFileName;
     }
 
+    public Integer getVotes() {
+        return votes;
+    }
+
+    public void setVotes(Integer votes) {
+        this.votes = votes;
+    }
+
+    public Integer getStars() {
+        return stars;
+    }
+
+    public void setStars(Integer stars) {
+        this.stars = stars;
+    }
+
     public void setImageFileName(String imageFileName) {
         this.imageFileName = imageFileName;
     }
@@ -73,6 +90,8 @@ public class Monster  {
                 ", description='" + description + '\'' +
                 ", scariness=" + scariness +
                 ", imageFileName='" + imageFileName + '\'' +
+                ", votes=" + votes +
+                ", stars=" + stars +
                 '}';
     }
 }

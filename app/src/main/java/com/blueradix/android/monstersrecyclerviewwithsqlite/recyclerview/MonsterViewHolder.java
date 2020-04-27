@@ -36,7 +36,10 @@ public class MonsterViewHolder extends RecyclerView.ViewHolder {
 
     public void updateMonster(Monster monster){
 
-        Picasso.get().load("file:///android_asset/monsters/" + monster.imageFileName.substring(3) + ".png").into(monsterImageView);
+//        Picasso.get().load("file:///android_asset/monsters/" + monster.imageFileName.substring(3) + ".png").into(monsterImageView);
+        View rootView = monsterImageView.getRootView();
+        int resID = rootView.getResources().getIdentifier(monster.imageFileName , "drawable" , rootView.getContext().getPackageName()) ;
+        monsterImageView.setImageResource(resID);
         this.monsterName.setText(monster.getName());
         this.monsterDescription.setText(monster.getDescription());
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.entities.Monster;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.database.MonsterDatabaseHelper;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.recyclerview.MonsterRecyclerViewAdapter;
+import com.blueradix.android.monstersrecyclerviewwithsqlite.service.DataService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -22,7 +23,7 @@ import java.util.List;
 
 /**
  * First and Foremost, in the assets/monsters folder you will find monster.db and monster.db-journal
- *          files to install then in your device, after it, delete them.
+ *          files to install them in your device, after it, delete them.
  *
  * Second   modify the MonsterDatabaseHelper to return a monster given it's database id
  * Third    Create An Scrolling Activity call it  AddMonsterScrollingActivity
@@ -36,9 +37,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Monster> monsters;
-    MonsterRecyclerViewAdapter adapter;
-    MonsterDatabaseHelper database;
+    private List<Monster> monsters;
+    private MonsterRecyclerViewAdapter adapter;
+    private DataService monsterDataService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,27 +64,27 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView monstersRecyclerView = findViewById(R.id.monstersRecyclerView);
 
-
         //set the layout manager
-//        monstersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //monstersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
 
         monstersRecyclerView.setLayoutManager(gridLayoutManager);
+        //monstersRecyclerView.setLayoutManager(linearLayoutManager);
 
-//        monstersRecyclerView.setLayoutManager(linearLayoutManager);
-
+        monsterDataService = new DataService();
+        monsterDataService.init(this);
+        //once your database is created, you can find it using Device File Explorer
+        //go to: data/data/app_package_name/databases there you will find your databases
 
         //Load Data from the database
-        database = new MonsterDatabaseHelper(this);
-        monsters = database.getMonsters();
+        monsters = monsterDataService.getMonsters();
         //create adapter passing the data, and the context
         adapter = new MonsterRecyclerViewAdapter(monsters, this);
         //attach the adapter to the Recyclerview
         monstersRecyclerView.setAdapter(adapter);
-
 
     }
 
