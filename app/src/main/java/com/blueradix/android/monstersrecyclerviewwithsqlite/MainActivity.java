@@ -1,14 +1,16 @@
 package com.blueradix.android.monstersrecyclerviewwithsqlite;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.blueradix.android.monstersrecyclerviewwithsqlite.activities.AddMonsterScrollingActivity;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.entities.Monster;
-import com.blueradix.android.monstersrecyclerviewwithsqlite.database.MonsterDatabaseHelper;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.recyclerview.MonsterRecyclerViewAdapter;
 import com.blueradix.android.monstersrecyclerviewwithsqlite.service.DataService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,33 +23,18 @@ import android.view.MenuItem;
 
 import java.util.List;
 
-/**
- * First and Foremost, in the assets/monsters folder you will find monster.db and monster.db-journal
- *          files to install them in your device, after it, delete them.
- *
- * Second   modify the MonsterDatabaseHelper to return a monster given it's database id
- * Third    Create An Scrolling Activity call it  AddMonsterScrollingActivity
- *          Edit the content_add_monster_scrolling.xml generated file. find it in the Layout folder
- *          Add a controls to input the monster's name, description, scariness level and a couple
- *          of buttons to cancel or add the monster.
- *          Next, create variables to manipulate them in the AddMonsterScrollingActivity
- * Fourth   Add a Splash Screen to the application.
- * Fifth    Test the internationalization in our application
- */
+import static com.blueradix.android.monstersrecyclerviewwithsqlite.entities.Constants.ADD_MONSTER_ACTIVITY_CODE;
 
 public class MainActivity extends AppCompatActivity {
 
     private List<Monster> monsters;
     private MonsterRecyclerViewAdapter adapter;
     private DataService monsterDataService;
+    private View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /* As the SplashTheme was set as a background image, it will stay as background for all
-            our activities, and we don't want that. Set
-            TODO:  set back the old Theme:   AppTheme  when the activity gets created
-        */
-
+        //https://developer.android.com/topic/libraries/view-binding?utm_medium=studio-assistant-stable&utm_source=android-studio-3-6
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -57,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addNewMonster();
             }
         });
+        rootView = findViewById(android.R.id.content).getRootView();
 
         RecyclerView monstersRecyclerView = findViewById(R.id.monstersRecyclerView);
 
@@ -69,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
-        monstersRecyclerView.setLayoutManager(gridLayoutManager);
-        //monstersRecyclerView.setLayoutManager(linearLayoutManager);
+//        monstersRecyclerView.setLayoutManager(gridLayoutManager);
+        monstersRecyclerView.setLayoutManager(linearLayoutManager);
 
         monsterDataService = new DataService();
         monsterDataService.init(this);
@@ -86,6 +73,37 @@ public class MainActivity extends AppCompatActivity {
         //attach the adapter to the Recyclerview
         monstersRecyclerView.setAdapter(adapter);
 
+    }
+
+    private void addNewMonster() {
+        Intent goToAddCreateMonster = new Intent(this, AddMonsterScrollingActivity.class);
+        startActivityForResult(goToAddCreateMonster, ADD_MONSTER_ACTIVITY_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == ADD_MONSTER_ACTIVITY_CODE){
+            if(resultCode == RESULT_OK){
+                addMonster(data);
+            }
+        }
+
+    }
+
+    private void addMonster(Intent data) {
+        String message;
+        Monster monster = (Monster) data.getSerializableExtra(Monster.MONSTER_KEY);
+        //insert your monster into the DB
+        Long result = monsterDataService.add(monster);
+        //result holds the autogenerated id in the table
+        if(result > 0){
+
+            message = "Your monster was created with id: "+ result;
+        }else{
+            message = "We couldn't create your monster, try again";
+        }
+        Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -109,4 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

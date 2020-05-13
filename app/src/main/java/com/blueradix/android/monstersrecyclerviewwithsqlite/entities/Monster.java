@@ -1,8 +1,11 @@
 package com.blueradix.android.monstersrecyclerviewwithsqlite.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Monster implements Serializable {
+
+    public static final String MONSTER_KEY = "monster_key";
 
     public Long id;
     public String name;
@@ -93,5 +96,18 @@ public class Monster implements Serializable {
                 ", votes=" + votes +
                 ", stars=" + stars +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Monster monster = (Monster) o;
+        return id.equals(monster.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

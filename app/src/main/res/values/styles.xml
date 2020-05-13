@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <!--  TODO: change the parent attribute instead of Theme.AppCompat.Light.DarkActionBar use Theme.AppCompat.Light.NoActionBar -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -18,7 +18,4 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!--  TODO: create a theme for the splash "screen" call it: SplashTheme -->
-
-    <!-- Once you finish with this open the AndroidManifest.xml file to continue-->
 </resources>
