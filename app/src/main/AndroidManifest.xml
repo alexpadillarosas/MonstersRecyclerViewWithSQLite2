@@ -13,7 +13,6 @@
             android:name=".activities.AddMonsterScrollingActivity"
             android:label="@string/title_activity_add_monster_scrolling"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <!-- TODO: change the theme of your main activity for the newly created SplashTheme -->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

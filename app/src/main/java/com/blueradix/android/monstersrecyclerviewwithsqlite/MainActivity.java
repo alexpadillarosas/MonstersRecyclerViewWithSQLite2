@@ -73,6 +73,48 @@ public class MainActivity extends AppCompatActivity {
         //attach the adapter to the Recyclerview
         monstersRecyclerView.setAdapter(adapter);
 
+        /** TODO 1: implement:
+         *      new activity called MonsterDetailScrollingActivity to Rate a monster
+         *          add an imageView:
+         *              set as id : monsterImageViewDetailActivity
+         *              scaleType: fitCenter
+         *          add a textView for the Monster Name:
+         *              set as id: monsterNameTextViewDetailActivity
+         *          add a Raiting Bar:
+         *              set as id: monsterRatingBarDetailActivity
+         *              style: @style/Widget.AppCompat.RatingBar.Indicator
+         *          add a label for the rating bar
+         *              set as text : rate this monster
+         *       Override the onBackPressed method:
+         *          call a method setIntentWWithData, this method will set data we will send back to the MonsterRecyclerViewAdapter
+         *       Display the back arrow in the toolbar of the activity. in the onCreate method add this:
+         *          getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+         *          toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+         *             @Override
+         *             public void onClick(View v) {
+         *                 setIntentWithData();
+         *             }
+         *          });
+         *
+         **/
+
+        /** TODO 5: Create A listener Interface call it: OnMonsterListener
+         *      place it inside the recyclerview package
+         *      add the following method to the interface: void onMonsterClick(Monster monster);
+         *      Make the main class implement this interface and create an intent inside of this method to navigate to the MonsterDetailScrollingActivity
+         */
+
+        /** TODO 6: Make the recyclerview listen to the user tap / clicks
+         *      The recyclerview is the UI component that will know when someone tap(click) a monster so, pass the listener to the MonsterRecyclerViewAdapter constructor
+         *      modify the MonsterRecyclerViewAdapter's constructor and the correspondent call
+         *      modify the MonsterViewHolder's constructor to receive the listener as it's this class that knows about the Monster's UI components, so it knows when you click it
+         *          Do not forget to include the ratingBar (use findViewById)
+         *      create a method call bind that will bind each monster with a listener so when the user tap/click on it the listener method onMonsterClick will be called
+         */
+
+        /** TODO 7: add a new condition to onActivityResult, to check when we come back to the recyclerview from the MonsterDetailScrollingActivity
+         *      call a method modifyMonster where we will update the database with the number of stars the user has given to the monster
+         */
     }
 
     private void addNewMonster() {

@@ -40,12 +40,12 @@ public class DataService {
     }
 
     public Monster getMonster(Long id){
-        //TODO implement getting a monster from a database given its primary key
+        //TODO 2: implement getting a monster from a database given its primary key
         return null;
     }
 
     public boolean rateMonster(Long id, Integer stars){
-        //TODO implement a mechanism to rate monsters.
+        //TODO 4: implement a mechanism to rate monsters.
         return false;
     }
 }

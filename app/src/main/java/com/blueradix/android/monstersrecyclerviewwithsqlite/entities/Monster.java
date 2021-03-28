@@ -12,8 +12,8 @@ public class Monster implements Serializable {
     public String description;
     public Integer scariness;
     public String imageFileName;
-    private Integer votes;
-    private Integer stars;
+    private Integer votes; // hold the total of votes
+    private Integer stars; // hold the total number of stars given to this monster
 
     public Monster() {
 

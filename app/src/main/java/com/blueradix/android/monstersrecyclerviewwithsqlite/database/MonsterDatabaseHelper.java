@@ -193,7 +193,7 @@ public class MonsterDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //TODO: create a method called getMonster that returns a monster given the primary key
+    //TODO 3: create a method called getMonster that returns a monster given the primary key
 
 
 }
